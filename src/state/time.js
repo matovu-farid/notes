@@ -2,11 +2,12 @@ import create from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { getInterval } from "../Library/time";
 
+import { defaultTimeInterval } from "../constants";
 const useTimeIntervalStore = create(
   immer((set, get) => ({
     startTime: 0,
     currentTime: 0,
-    timeInterval: "",
+    timeInterval: defaultTimeInterval,
     timer: null,
     noteId: null,
     running: false,
@@ -14,7 +15,7 @@ const useTimeIntervalStore = create(
       set((state) => {
         state.startTime = 0;
         state.currentTime = 0;
-        state.timeInterval = "";
+        state.timeInterval = defaultTimeInterval;
         clearInterval(state.timer);
         state.timer = null;
         state.noteId = null;
@@ -36,7 +37,7 @@ const useTimeIntervalStore = create(
         if (noteId !== state.noteId) {
           state.noteId = noteId;
           state.startTime = Date.now();
-          state.timeInterval = "";
+          state.timeInterval = defaultTimeInterval;
         } else {
           const delay = Date.now() - stoppedTime;
           state.startTime += delay;

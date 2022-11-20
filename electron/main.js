@@ -16,7 +16,8 @@ function createWindow(mainWindowState) {
       preload: path.join(__dirname, "preload.js"),
     },
     transparent: true,
-    frame: false,
+    autoHideMenuBar: true,
+
     backgroundColor: "#eaea7a",
     x: mainWindowState.x,
     y: mainWindowState.y,
