@@ -8,8 +8,8 @@ let isDev = require("electron-is-dev");
 function createWindow(mainWindowState) {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: mainWindowState.width,
-    height: mainWindowState.height,
+    width: 647,
+    height: 400,
 
     webPreferences: {
       nodeIntegration: true,
@@ -57,8 +57,6 @@ function createWindow(mainWindowState) {
       mainWindowState.saveState({
         x: windowBounds.x,
         y: windowBounds.y,
-        width: windowBounds.width,
-        height: windowBounds.height,
       });
     });
     win.on("close", () => {

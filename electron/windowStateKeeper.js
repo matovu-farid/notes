@@ -4,8 +4,6 @@ async function windowStateKeeper() {
   let state = {
     x: 100,
     y: 100,
-    width: 485,
-    height: 300,
   };
 
   async function setBounds() {
@@ -13,8 +11,8 @@ async function windowStateKeeper() {
       state = await appConfig.get(windowName);
     }
   }
-  function saveState({ x, y, width, height }) {
-    state = { x, y, width, height };
+  function saveState({ x, y }) {
+    state = { x, y };
     appConfig.set(windowName, state);
   }
 

@@ -7,7 +7,7 @@ const NoteInput = () => {
   const handleAddNote = (e) => {
     if (e.target.value === "") return;
 
-    if (notesLength >= 6) return;
+    if (notesLength >= 5) return;
     if (e.key === "Enter") {
       addNote({
         id: Math.random(),

@@ -1,8 +1,9 @@
 import React from "react";
 import useNotesStore from "../state/notes";
-import Button from "./Button";
+import IconButton from "./Buttons/Icon";
 import NoteInput from "./NoteInput";
 import NoteItem from "./NoteItem";
+import Timer from "./Timer";
 
 const NotesList = () => {
   const notes = useNotesStore((state) => state.notesArray());
@@ -11,13 +12,14 @@ const NotesList = () => {
   return (
     <div className="min-h-[97vh] flex flex-col">
       <NoteInput />
+      <Timer />
       <ul className="flex-1">
         {notes.map((note) => (
           <NoteItem key={note.id} note={note}></NoteItem>
         ))}
       </ul>
       <div className="flex justify-end">
-        <Button
+        <IconButton
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +36,7 @@ const NotesList = () => {
           onClick={removeNotes}
         >
           Clear
-        </Button>
+        </IconButton>
       </div>
     </div>
   );
