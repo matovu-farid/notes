@@ -55,6 +55,7 @@
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && nodemon --delay 2500ms --exec electron .",
     "pack": "electron-builder --dir",
+    "make": "yarn build && yarn build-electron && yarn dist",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "dist": "electron-builder -c.extraMetadata.main=build/electron/main.js --publish never",
     "build-electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared"
@@ -82,6 +83,7 @@
     "concurrently": "^7.5.0",
     "electron": "^21.3.0",
     "electron-builder": "^23.6.0",
+    "jest": "^29.3.1",
     "nodemon": "^2.0.20",
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4",
