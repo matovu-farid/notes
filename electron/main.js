@@ -1,8 +1,9 @@
 const path = require("path");
 const windowStateKeeper = require("./windowStateKeeper");
+const url = require("url");
 
 const { app, BrowserWindow } = require("electron");
-const isDev = require("electron-is-dev");
+let isDev = require("electron-is-dev");
 
 function createWindow(mainWindowState) {
   // Create the browser window.
@@ -12,6 +13,7 @@ function createWindow(mainWindowState) {
 
     webPreferences: {
       nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
     },
     transparent: true,
     frame: false,
@@ -19,19 +21,20 @@ function createWindow(mainWindowState) {
     x: mainWindowState.x,
     y: mainWindowState.y,
   });
-
-  // and load the index.html of the app.
-  // win.loadFile("index.html");
+  console.log(path.join(__dirname, "../index.html"));
 
   win.loadURL(
     isDev
       ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "../build/index.html")}`
+      : url.format({
+          pathname: path.join(__dirname, "../index.html"),
+          protocol: "file:",
+          slashes: true,
+        })
   );
 
   // Open the DevTools.
   if (isDev) {
-    //win.webContents.openDevTools({ mode: "undocked" });
     let devtools;
     win.webContents.once("did-finish-load", function () {
       devtools = new BrowserWindow();
